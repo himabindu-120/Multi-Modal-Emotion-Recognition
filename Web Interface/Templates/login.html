@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<div class="login-container"> <!-- Apply login-container class -->
+  <div class="login-box"> <!-- Create a login box to contain the form -->
+    <!-- Replace the text with the logo image -->
+    <img src="{{ url_for('static', filename='logo-transparent-png.png') }}" class="img-fluid mx-auto d-block" alt="CampusCart Logo" style="width: 150px; height: auto; margin-bottom: 10px;"> <!-- Adjust width and margin -->
+
+    <h3 align="center" style="color: #051650;">Login</h3> <!-- Gradient blue color -->
+    <form method="POST">
+      <div class="form-group" style="width: 100%;"> <!-- Set input width to 100% -->
+        <label for="email" style="color: #051650;">Email Address</label> <!-- Gradient blue color -->
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          name="email"
+          placeholder="Enter email"
+          style="width: 100%;"
+        >
+      </div>
+      <div class="form-group" style="width: 100%; margin-bottom: 10px;"> <!-- Set input width to 100% and reduce margin-bottom -->
+        <label for="password" style="color: #051650;">Password</label> <!-- Gradient blue color -->
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          name="password"
+          placeholder="Enter password"
+          style="width: 100%;"
+        >
+      </div>
+      <br />
+      <button type="submit" class="btn btn-primary" style="background: linear-gradient(to right, #051650, #00BFFF); border: none; width: 100%;">Login</button> <!-- Gradient blue color -->
+    </form>
+    <div align="center" style="margin-top: 10px;"> <!-- Adjust margin-top -->
+      <button class="btn btn-link" id="forgot-password" style="color: #051650;">Forgot Password?</button> <!-- Gradient blue color -->
+    </div>
+  </div>
+</div>
+
+<div id="forgot-password-modal" class="modal">
+  <div class="modal-content" style="background: linear-gradient(to right, #051650, #00BFFF); color: white;">
+    <span class="close" style="color: white;">&times;</span>
+    <h3 style="color: white;">Reset Password</h3>
+    <p>Please login to access this page.</p>
+    <form id="otp-form">
+      <div class="form-group" style="width: 100%;"> <!-- Set input width to 100% -->
+        <label for="reset-email" style="color: white;">Email Address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="reset-email"
+          name="reset-email"
+          placeholder="Enter email"
+          style="width: 100%; color: black;"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary" style="background-color: white; color: #051650; width: 100%;">Send OTP</button> <!-- Gradient blue color -->
+    </form>
+  </div>
+</div>
+
+<style>
+  body {
+    background-image: url('{{ url_for('static', filename='back.jpg') }}');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  .login-container {
+    background-color: rgba(173, 216, 230, 0.8); /* Adjust the alpha channel as needed */ /* Light blue transparent background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    margin: auto;
+    margin-top: 20px; /* Reduced margin-top to move the login box up */
+    margin-bottom: 50px; /* Add margin-bottom to create space below the login box */
+  }
+
+  /* Modal styles */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 50%; /* Start from the middle of the page */
+    width: 80%; /* Full width */
+    height: 50%; /* Half of the height */
+    overflow: auto; /* Enable scroll if needed */
+    background: linear-gradient(to right, #1E90FF, #00BFFF); /* Gradient blue color */
+  }
+
+  .modal-content {
+    background: linear-gradient(to right, #1E90FF, #00BFFF); /* Gradient blue color */
+    color: white !important; /* Set text color to white */
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #1E90FF; /* Gradient blue color */
+    width: 80%;
+  }
+
+  /* Position the modal close button */
+  .close {
+    color: white !important; /* Set close button color to white */
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black !important; /* Set close button hover color to black */
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  /* Adjust margin to move the login box to the left */
+  .login-box {
+    margin-right: auto;
+    margin-left: 0;
+  }
+</style>
+
+<script>
+  // Get the modal element
+  var modal = document.getElementById("forgot-password-modal");
+
+  // Get the button that opens the modal
+  var btn = document.getElementById("forgot-password");
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+
+  // When the user clicks the button, open the modal
+  btn.onclick = function () {
+    modal.style.display = "block";
+  };
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function () {
+    modal.style.display = "none";
+  };
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+</script>
+{% endblock %}
